@@ -3,20 +3,19 @@
 # Define accompanying passwords/secrets in group_vars/production/vault.yml
 
 wordpress_sites:
-  wp-sample.the-open.net:
+  example.com:
     site_hosts:
-      - canonical: wp-sample.the-open.net
+      - canonical: example.com
+        redirects:
+          - www.example.com
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:the-open/wordpress-starter-kit.git # replace with your Git repo URL
+    repo: git@github.com:example/example.com.git # replace with your Git repo URL
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
     branch: master
     multisite:
       enabled: false
     ssl:
-      enabled: true
+      enabled: false
       provider: letsencrypt
     cache:
-      enabled: true
-      duration: 90s
-      skip_cache_uri: /wp-admin/|/xmlrpc.php|wp-.*.php|/feed/|index.php|sitemap(_index)?.xml
-      skip_cache_cookie: comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in
+      enabled: false
